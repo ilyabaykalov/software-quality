@@ -16,26 +16,53 @@ public class TaskServiceImpl implements TaskService {
         this.userService = userService;
     }
 
+    /**
+     * Получение всех задач из репозитория
+     * @return Коллекция всех задач
+     * @author Ilya Baykalov
+     */
     @Override
     public List<Task> getAllTasks() {
         return taskRepository.findAllTask();
     }
 
+    /**
+     * Получение всех архивных задач из репозитория
+     * @return Коллекция всех архивных задач
+     * @author Ilya Baykalov
+     */
     @Override
     public List<Task> getArchivedTasks() {
         return taskRepository.findArchivedTask();
     }
 
+    /**
+     * Получение всех задач кроме архивных из репозитория
+     * @return Коллекция всех задач кроме архивных
+     * @author Ilya Baykalov
+     */
     @Override
     public List<Task> getNonArchivedTasks() {
         return taskRepository.findNonArchivedTask();
     }
 
+    /**
+     * Получение конкретной задачи из репозитория
+     * @param id Идектификационный номер задачи
+     * @return Конкретная задача
+     * @author Ilya Baykalov
+     */
     @Override
     public Task getTask(int id) {
         return taskRepository.get(id);
     }
 
+    /**
+     * Добавление новой задачи в репозиторий
+     * @param task Новая задача
+     * @return Созданная задача
+     * @author Ilya Baykalov
+     */
     @Override
     public Task addTask(Task task) {
         if (task.getStatus().equals(NOT_FINISHED)) {
@@ -46,6 +73,12 @@ public class TaskServiceImpl implements TaskService {
         }
     }
 
+    /**
+     * Изменение задачи
+     * @param task Выбранная задача
+     * @return Статус выполнения (true - выполнено, false - не выполнено)
+     * @author Ilya Baykalov
+     */
     @Override
     public boolean editTask(Task task) {
         String author = taskRepository.get(task.getId()).getAuthor();
@@ -61,6 +94,12 @@ public class TaskServiceImpl implements TaskService {
         }
     }
 
+    /**
+     * Удаление задачи из репозитория
+     * @param id Идектификационный номер задачи
+     * @return Статус выполнения (true - выполнено, false - не выполнено)
+     * @author Ilya Baykalov
+     */
     @Override
     public boolean removeTask(int id) {
         try {
@@ -70,6 +109,13 @@ public class TaskServiceImpl implements TaskService {
         }
     }
 
+    /**
+     * Возвращает все задачи из репозитория
+     * @param id Идектификационный номер задачи
+     * @param status Новый статус задачи
+     * @return Статус выполнения (true - выполнено, false - не выполнено)
+     * @author Ilya Baykalov
+     */
     @Override
     public boolean setStatus(int id, String status) {
         String author = taskRepository.get(id).getAuthor();
@@ -95,6 +141,13 @@ public class TaskServiceImpl implements TaskService {
         return false;
     }
 
+    /**
+     * Возвращает все задачи из репозитория
+     * @param id Идектификационный номер задачи
+     * @param priority Новый приоритет задачи
+     * @return Статус выполнения (true - выполнено, false - не выполнено)
+     * @author Ilya Baykalov
+     */
     @Override
     public boolean setPriority(int id, Task.TaskPriority priority) {
         String author = taskRepository.get(id).getAuthor();
