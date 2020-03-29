@@ -8,10 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.ilyabaykalov.Task.TaskPriority.HIGH;
 import static org.ilyabaykalov.Task.TaskPriority.LOW;
@@ -202,5 +199,24 @@ public class TaskServiceTest extends Assert {
         taskService.addTask(task);
 
         assertTrue(taskService.setPriority(task.getId(), LOW));
+    }
+
+    @Test
+    public void testAssertEquals() {
+        Task task1 = new Task("Первая задача", "Описание задачи","ilyabaykalov", FINISHED, LOW);
+        Task task2 = new Task("Первая задача", "Описание задачи","ilyabaykalov", FINISHED, LOW);
+
+        Task task3 = new Task("Первая задача", "Описание задачи","andrewtelkov", FINISHED, LOW);
+        Task task4 = new Task("Вторая задача", "Описание задачи","ilyabaykalov", FINISHED, LOW);
+        Task task5 = new Task("Первая задача", "Описание третьей задачи","ilyabaykalov", FINISHED, LOW);
+        Task task6 = new Task("Первая задача", "Описание задачи","andrewtelkov", NOT_FINISHED, LOW);
+        Task task7 = new Task("Первая задача", "Описание задачи","andrewtelkov", NOT_FINISHED, HIGH);
+
+        assertEquals(task1, task2);
+        assertNotEquals(task1, task3);
+        assertNotEquals(task1, task4);
+        assertNotEquals(task1, task5);
+        assertNotEquals(task1, task6);
+        assertNotEquals(task1, task7);
     }
 }

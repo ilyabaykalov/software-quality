@@ -1,6 +1,7 @@
 package org.ilyabaykalov;
 
 import java.util.Date;
+import java.util.Objects;
 
 import static org.ilyabaykalov.Task.TaskPriority.MEDIUM;
 import static org.ilyabaykalov.Task.TaskStatus.NOT_FINISHED;
@@ -12,6 +13,7 @@ public class Task {
         FINISHED,
         ARCHIVED
     }
+
     public enum TaskPriority {
         HIGH,
         MEDIUM,
@@ -53,6 +55,14 @@ public class Task {
         this.author = author;
         this.dateOfCreation = dateOfCreation;
         this.dateOfLastEditing = dateOfLastEditing;
+        this.status = status;
+        this.priority = priority;
+    }
+
+    public Task(String taskTitle, String taskDescription, String author, TaskStatus status, TaskPriority priority) {
+        this.taskTitle = taskTitle;
+        this.taskDescription = taskDescription;
+        this.author = author;
         this.status = status;
         this.priority = priority;
     }
@@ -130,5 +140,22 @@ public class Task {
 
     public void setPriority(TaskPriority priority) {
         this.priority = priority;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return taskTitle.equals(task.getTaskTitle()) &&
+                taskDescription.equals(task.getTaskDescription()) &&
+                author.equals(task.getAuthor()) &&
+                status.equals(task.getStatus()) &&
+                priority.equals(task.getPriority());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskTitle, taskDescription, author, status, priority);
     }
 }
