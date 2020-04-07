@@ -1,6 +1,15 @@
 # software-quality
 
-lab 1
+### lab 2
+
+### Парсер
+Парсер и тесты парсера находятся в модуле second-lab
+
+### Метод parseTask
+Метод parseTask находятся в модуле first-lab в класс taskServiceImpl.java
+
+\~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+### lab 1
 
 ### Запуск
 Запустить общий тест. Путь до файла: api/src/test/java/org/ilyabaykalov/TaskServiceTest.java
