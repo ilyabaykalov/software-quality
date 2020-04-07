@@ -203,14 +203,14 @@ public class TaskServiceTest extends Assert {
 
     @Test
     public void testAssertEquals() {
-        Task task1 = new Task("Первая задача", "Описание задачи","ilyabaykalov", FINISHED, LOW);
-        Task task2 = new Task("Первая задача", "Описание задачи","ilyabaykalov", FINISHED, LOW);
+        Task task1 = new Task("Первая задача", "Описание задачи", "ilyabaykalov", FINISHED, LOW);
+        Task task2 = new Task("Первая задача", "Описание задачи", "ilyabaykalov", FINISHED, LOW);
 
-        Task task3 = new Task("Первая задача", "Описание задачи","andrewtelkov", FINISHED, LOW);
-        Task task4 = new Task("Вторая задача", "Описание задачи","ilyabaykalov", FINISHED, LOW);
-        Task task5 = new Task("Первая задача", "Описание третьей задачи","ilyabaykalov", FINISHED, LOW);
-        Task task6 = new Task("Первая задача", "Описание задачи","andrewtelkov", NOT_FINISHED, LOW);
-        Task task7 = new Task("Первая задача", "Описание задачи","andrewtelkov", NOT_FINISHED, HIGH);
+        Task task3 = new Task("Первая задача", "Описание задачи", "andrewtelkov", FINISHED, LOW);
+        Task task4 = new Task("Вторая задача", "Описание задачи", "ilyabaykalov", FINISHED, LOW);
+        Task task5 = new Task("Первая задача", "Описание третьей задачи", "ilyabaykalov", FINISHED, LOW);
+        Task task6 = new Task("Первая задача", "Описание задачи", "andrewtelkov", NOT_FINISHED, LOW);
+        Task task7 = new Task("Первая задача", "Описание задачи", "andrewtelkov", NOT_FINISHED, HIGH);
 
         assertEquals(task1, task2);
         assertNotEquals(task1, task3);
@@ -218,5 +218,23 @@ public class TaskServiceTest extends Assert {
         assertNotEquals(task1, task5);
         assertNotEquals(task1, task6);
         assertNotEquals(task1, task7);
+    }
+
+    @Test
+    public void testParserTask() {
+        String line1 = "Задача 1_Описание 1_ilyabaykalov";
+
+        Task task1 = new Task("Задача 1", "Описание 1", "ilyabaykalov");
+        Task task2 = new Task("Задача 2", "Описание 2", "ilyabaykalov");
+
+        Task parsedTask1 = taskService.parseTask(line1);
+        Task parsedTask2 = taskService.parseTask("");
+        Task parsedTask3 = taskService.parseTask(null);
+
+        assertNotEquals(task2, parsedTask1);
+        assertEquals(task1, parsedTask1);
+
+        assertNull(parsedTask2);
+        assertNull(parsedTask3);
     }
 }

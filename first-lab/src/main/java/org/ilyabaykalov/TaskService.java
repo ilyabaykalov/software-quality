@@ -13,6 +13,8 @@ public interface TaskService {
 
     Task addTask(Task task);
 
+    Task parseTask(String line);
+
     boolean editTask(Task task);
 
     boolean removeTask(int id);

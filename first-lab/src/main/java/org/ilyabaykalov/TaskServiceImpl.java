@@ -18,6 +18,7 @@ public class TaskServiceImpl implements TaskService {
 
     /**
      * Получение всех задач из репозитория
+     *
      * @return Коллекция всех задач
      * @author Ilya Baykalov
      */
@@ -28,6 +29,7 @@ public class TaskServiceImpl implements TaskService {
 
     /**
      * Получение всех архивных задач из репозитория
+     *
      * @return Коллекция всех архивных задач
      * @author Ilya Baykalov
      */
@@ -38,6 +40,7 @@ public class TaskServiceImpl implements TaskService {
 
     /**
      * Получение всех задач кроме архивных из репозитория
+     *
      * @return Коллекция всех задач кроме архивных
      * @author Ilya Baykalov
      */
@@ -48,6 +51,7 @@ public class TaskServiceImpl implements TaskService {
 
     /**
      * Получение конкретной задачи из репозитория
+     *
      * @param id Идектификационный номер задачи
      * @return Конкретная задача
      * @author Ilya Baykalov
@@ -59,6 +63,7 @@ public class TaskServiceImpl implements TaskService {
 
     /**
      * Добавление новой задачи в репозиторий
+     *
      * @param task Новая задача
      * @return Созданная задача
      * @author Ilya Baykalov
@@ -74,7 +79,26 @@ public class TaskServiceImpl implements TaskService {
     }
 
     /**
+     * Получение задачи из строки
+     *
+     * @param line Строка, содержащая задачу
+     * @return Полученная задача
+     * @author Ilya Baykalov
+     */
+    @Override
+    public Task parseTask(String line) {
+        if (line != null) {
+            if (!line.equals("")) {
+                String[] parseData = line.split("_");
+                return new Task(parseData[0], parseData[1], parseData[2]);
+            }
+        }
+        return null;
+    }
+
+    /**
      * Изменение задачи
+     *
      * @param task Выбранная задача
      * @return Статус выполнения (true - выполнено, false - не выполнено)
      * @author Ilya Baykalov
@@ -84,11 +108,9 @@ public class TaskServiceImpl implements TaskService {
         String author = taskRepository.get(task.getId()).getAuthor();
         String currentUser = userService.getCurrentUser();
         if (author.equals(currentUser)) {
-//            if (task.getStatus().equals(NOT_FINISHED)) {
-                task.setDateOfLastEditing(new Date());
-                taskRepository.update(task);
-                return true;
-//            }
+            task.setDateOfLastEditing(new Date());
+            taskRepository.update(task);
+            return true;
         } else {
             return false;
         }
@@ -96,6 +118,7 @@ public class TaskServiceImpl implements TaskService {
 
     /**
      * Удаление задачи из репозитория
+     *
      * @param id Идектификационный номер задачи
      * @return Статус выполнения (true - выполнено, false - не выполнено)
      * @author Ilya Baykalov
@@ -111,7 +134,8 @@ public class TaskServiceImpl implements TaskService {
 
     /**
      * Возвращает все задачи из репозитория
-     * @param id Идектификационный номер задачи
+     *
+     * @param id     Идектификационный номер задачи
      * @param status Новый статус задачи
      * @return Статус выполнения (true - выполнено, false - не выполнено)
      * @author Ilya Baykalov
@@ -143,7 +167,8 @@ public class TaskServiceImpl implements TaskService {
 
     /**
      * Возвращает все задачи из репозитория
-     * @param id Идектификационный номер задачи
+     *
+     * @param id       Идектификационный номер задачи
      * @param priority Новый приоритет задачи
      * @return Статус выполнения (true - выполнено, false - не выполнено)
      * @author Ilya Baykalov

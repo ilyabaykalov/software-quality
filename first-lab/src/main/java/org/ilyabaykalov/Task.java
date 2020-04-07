@@ -49,6 +49,15 @@ public class Task {
         this.status = NOT_FINISHED;
     }
 
+    public Task(String taskTitle, String taskDescription, String author) {
+        this.taskTitle = taskTitle;
+        this.taskDescription = taskDescription;
+        this.author = author;
+        this.dateOfCreation = new Date();
+        this.status = NOT_FINISHED;
+        this.priority = MEDIUM;
+    }
+
     public Task(String taskTitle, String taskDescription, String author, Date dateOfCreation, Date dateOfLastEditing, TaskStatus status, TaskPriority priority) {
         this.taskTitle = taskTitle;
         this.taskDescription = taskDescription;
