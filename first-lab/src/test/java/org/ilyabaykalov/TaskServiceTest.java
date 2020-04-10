@@ -223,18 +223,21 @@ public class TaskServiceTest extends Assert {
     @Test
     public void testParserTask() {
         String line1 = "Задача 1_Описание 1_ilyabaykalov";
+        String line2 = "Задача 1%Описание 1%ilyabaykalov";
 
         Task task1 = new Task("Задача 1", "Описание 1", "ilyabaykalov");
         Task task2 = new Task("Задача 2", "Описание 2", "ilyabaykalov");
 
         Task parsedTask1 = taskService.parseTask(line1);
-        Task parsedTask2 = taskService.parseTask("");
-        Task parsedTask3 = taskService.parseTask(null);
+        Task parsedTask2 = taskService.parseTask(line2);
+        Task parsedTask3 = taskService.parseTask("");
+        Task parsedTask4 = taskService.parseTask(null);
 
         assertNotEquals(task2, parsedTask1);
         assertEquals(task1, parsedTask1);
 
         assertNull(parsedTask2);
         assertNull(parsedTask3);
+        assertNull(parsedTask4);
     }
 }

@@ -90,7 +90,8 @@ public class TaskServiceImpl implements TaskService {
         if (line != null) {
             if (!line.equals("")) {
                 String[] parseData = line.split("_");
-                return new Task(parseData[0], parseData[1], parseData[2]);
+                if (parseData.length == 3)
+                    return new Task(parseData[0], parseData[1], parseData[2]);
             }
         }
         return null;
