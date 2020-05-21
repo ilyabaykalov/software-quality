@@ -12,6 +12,7 @@
         <module>first-lab</module>
         <module>second-lab</module>
         <module>third-lab</module>
+        <module>fourth-lab</module>
     </modules>
 
     <properties>
