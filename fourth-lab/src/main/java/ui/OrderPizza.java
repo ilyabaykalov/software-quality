@@ -44,7 +44,7 @@ public class OrderPizza extends JFrame {
         final OrderingEventSource event_src = new OrderingEventSource(app);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Electro-пиццерия");
+        setTitle("React(не .js)-пиццерия");
 
         setBounds(500, 200, 400, 400);
 
@@ -97,7 +97,7 @@ public class OrderPizza extends JFrame {
         cbPizzaName.setModel(new DefaultComboBoxModel(Title.values()));
         cbPizzaName.setSelectedItem(Title.Classic);
 
-        JLabel pizzaSize = new JLabel("Размер не главное!");
+        JLabel pizzaSize = new JLabel("Бери побольше!");
         pizzaSize.setBounds(15, 190, 350, 20);
         contentPane.add(pizzaSize);
 
